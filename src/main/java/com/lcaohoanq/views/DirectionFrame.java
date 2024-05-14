@@ -1,5 +1,6 @@
 package com.lcaohoanq.views;
 
+import com.lcaohoanq.utils.AudioHandler;
 import com.lcaohoanq.utils.ImageHandler;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -34,6 +35,9 @@ public class DirectionFrame extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setIconImage(new ImageHandler().icon);
         this.setResizable(false);
+
+        AudioHandler.playAudio("/pedro.wav");
+
         initMenu();
         initPanelButton();
     }
@@ -77,6 +81,7 @@ public class DirectionFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        AudioHandler.playAudio("/ding.wav");
         if(e.getActionCommand().equals("Copy")) {
             CopyFrame copyFrame = new CopyFrame();
             copyFrame.setVisible(true);
