@@ -16,7 +16,7 @@ public class DataController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String filePath = functionFrame.getFilePath();
+        String filePath = functionFrame.getFileModel().getAbsolutePath();
         if(filePath != null) {
             new DataFrame(new File(filePath)).setVisible(true);
         } else {

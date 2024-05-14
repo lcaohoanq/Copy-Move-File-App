@@ -23,24 +23,9 @@ public class CopyController implements ActionListener {
         System.out.println("You are in the Copy Action");
 
         File sourceFile = copyFrame.getFile();
-        String destinationPath = copyFrame.getFolderPath();
+        String destinationPath = copyFrame.getFolderModel().getAbsolutePath();
 
         if(!copyFrame.checkState()){
-//            CountDownLatch latch = new CountDownLatch(1);
-//
-//            new Thread(() -> {
-//                ProgressBarFrame progressBarFrame = new ProgressBarFrame();
-//                progressBarFrame.setVisible(true);
-//                progressBarFrame.triggerAction();
-//                latch.countDown();  // Decrements the count of the latch, releasing all waiting threads when the count reaches zero
-//            }).start();
-//
-//            try {
-//                latch.await();  // Causes the current thread to wait until the latch has counted down to zero
-//            } catch (InterruptedException ex) {
-//                ex.printStackTrace();
-//            }
-
             // Check if source file and destination path are not null
             if (sourceFile != null && destinationPath != null) {
                 try {

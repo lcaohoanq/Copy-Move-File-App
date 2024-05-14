@@ -23,13 +23,9 @@ public class MoveController implements ActionListener {
         System.out.println("You are in the Move Action");
 
         File sourceFile = moveFrame.getFile();
-        String destinationPath = moveFrame.getFolderPath();
+        String destinationPath = moveFrame.getFolderModel().getAbsolutePath();
 
         if(!moveFrame.checkState()){
-//            ProgressBarFrame progressBarFrame = new ProgressBarFrame();
-//            progressBarFrame.setVisible(true);
-//            progressBarFrame.triggerAction();
-
             // Check if source file and destination path are not null
             if (sourceFile != null && destinationPath != null) {
                 try {

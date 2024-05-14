@@ -1,6 +1,8 @@
 package com.lcaohoanq.views;
 
 import com.lcaohoanq.controllers.DataController;
+import com.lcaohoanq.models.FileModel;
+import com.lcaohoanq.models.FolderModel;
 import com.lcaohoanq.utils.FileHandler;
 import com.lcaohoanq.utils.ImageHandler;
 import java.awt.BorderLayout;
@@ -38,7 +40,8 @@ public abstract class FunctionFrame extends JFrame {
     private Border border = BorderFactory.createEmptyBorder(10, 10, 10, 10);
     protected File selectedFile;
     protected File selectedDirectory;
-
+    private FileModel fileModel;
+    private FolderModel folderModel;
     public FunctionFrame() {
         this.setSize(1000, 600);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -120,10 +123,20 @@ public abstract class FunctionFrame extends JFrame {
             fileInfoArea.setText("");
             if (e.getActionCommand().equals(JFileChooser.APPROVE_SELECTION)) {
                 selectedFile = sourceFileChooser.getSelectedFile();
-                fileInfoArea.append("Name: " + selectedFile.getName() + "\n");
-                fileInfoArea.append("Path: " + selectedFile.getAbsolutePath() + "\n");
-                fileInfoArea.append("Size: " + selectedFile.length() + " Bytes\n");
-                fileInfoArea.append("Type: " + FileHandler.getFileExtension(selectedFile) + "\n");
+
+                fileModel = new FileModel(selectedFile.getName(), selectedFile.getAbsolutePath(),
+                    selectedFile.length(), FileHandler.extractExtension(selectedFile));
+
+                String nameLine = "Name: " + fileModel.getName() + "\n";
+                String pathLine = "Path: " + fileModel.getAbsolutePath() + "\n";
+                String sizeLine = "Size: " + fileModel.getLength() + " Bytes\n";
+                String typeLine = "Type: " + fileModel.getExtension() + "\n";
+
+                fileInfoArea.append(nameLine);
+                fileInfoArea.append(pathLine);
+                fileInfoArea.append(sizeLine);
+                fileInfoArea.append(typeLine);
+
             } else if (e.getActionCommand().equals(JFileChooser.CANCEL_SELECTION)) {
                 fileInfoArea.setText("");
             }
@@ -132,8 +145,15 @@ public abstract class FunctionFrame extends JFrame {
         destinationFileChooser.addActionListener(e -> {
             if (e.getActionCommand().equals(JFileChooser.APPROVE_SELECTION)) {
                 selectedDirectory = destinationFileChooser.getSelectedFile();
-                directoryInfoArea.append("Name: " + selectedDirectory.getName() + "\n");
-                directoryInfoArea.append("Path: " + selectedDirectory.getAbsolutePath() + "\n");
+
+                folderModel = new FolderModel(selectedDirectory.getName(),
+                    selectedDirectory.getAbsolutePath());
+
+                String nameLine = "Name: " + folderModel.getName() + "\n";
+                String pathLine = "Path: " + folderModel.getAbsolutePath() + "\n";
+
+                directoryInfoArea.append(nameLine);
+                directoryInfoArea.append(pathLine);
             } else if (e.getActionCommand().equals(JFileChooser.CANCEL_SELECTION)) {
                 directoryInfoArea.setText("");
             }
@@ -145,14 +165,6 @@ public abstract class FunctionFrame extends JFrame {
         viewFileDataButton.addActionListener(new DataController(this));
     }
 
-    public String getFilePath() {
-        return selectedFile == null ? null : selectedFile.getAbsolutePath();
-    }
-
-    public String getFolderPath(){
-        return selectedDirectory == null ? null : selectedDirectory.getAbsolutePath();
-    }
-
     public File getFile(){
         return selectedFile;
     }
@@ -160,6 +172,14 @@ public abstract class FunctionFrame extends JFrame {
     // need to open the file data to continue the processing
     public boolean checkState(){
         return fileInfoArea.getText().isEmpty() || directoryInfoArea.getText().isEmpty();
+    }
+
+    public FileModel getFileModel() {
+        return this.fileModel;
+    }
+
+    public FolderModel getFolderModel() {
+        return this.folderModel;
     }
 
 }
