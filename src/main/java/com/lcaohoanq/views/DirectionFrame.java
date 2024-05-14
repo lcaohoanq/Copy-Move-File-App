@@ -11,6 +11,10 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
@@ -19,15 +23,34 @@ public class DirectionFrame extends JFrame implements ActionListener {
     private JPanel jPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
     private JButton jButtonCopy = new JButton("Copy");
     private JButton jButtonMove = new JButton("Move");
+    private JMenuBar jMenuBar;
+    private JMenu jMenu;
+    private JMenuItem jMenuAbout;
 
     public DirectionFrame() {
-        this.setTitle("Copy Move File App");
-        this.setSize(300, 100);
+        this.setTitle("Copy-Move File");
+        this.setSize(300, 150);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setIconImage(new ImageHandler().icon);
         this.setResizable(false);
+        initMenu();
         initPanelButton();
+    }
+
+    private void initMenu(){
+        jMenuBar = new JMenuBar();
+        jMenu = new JMenu("HELP");
+        jMenuAbout = new JMenuItem("About");
+        jMenuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
+        jMenuBar.add(jMenu);
+        jMenu.add(jMenuAbout);
+
+        jMenuAbout.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, "This is a simple app to copy or move file", "About", JOptionPane.INFORMATION_MESSAGE);
+        });
+
+        this.setJMenuBar(jMenuBar);
     }
 
     private void initPanelButton() {
