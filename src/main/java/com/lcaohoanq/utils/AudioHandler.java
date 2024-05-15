@@ -40,9 +40,9 @@ public class AudioHandler {
         }
     }
 
-    public void playAudio(String path) {
+    public static void playAudio(String path) {
         try {
-            InputStream inputStream = getClass().getResourceAsStream(path);
+            InputStream inputStream = AudioHandler.class.getResourceAsStream(path);
             if (inputStream == null) {
                 throw new Error("Audio file is missing");
             }

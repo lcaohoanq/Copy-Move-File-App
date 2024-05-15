@@ -1,5 +1,7 @@
 package com.lcaohoanq.controllers;
 
+import com.lcaohoanq.models.FileModel;
+import com.lcaohoanq.utils.AudioHandler;
 import com.lcaohoanq.views.DataFrame;
 import com.lcaohoanq.views.FunctionFrame;
 import java.awt.event.ActionEvent;
@@ -16,10 +18,13 @@ public class DataController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String filePath = functionFrame.getFileModel().getAbsolutePath();
-        if(filePath != null) {
-            new DataFrame(new File(filePath)).setVisible(true);
+
+        FileModel file = functionFrame.getFileModel();
+        if(file != null) {
+            AudioHandler.playAudio("/sound.wav");
+            new DataFrame(new File(file.getAbsolutePath())).setVisible(true);
         } else {
+            AudioHandler.playAudio("/errorV2.wav");
             JOptionPane.showMessageDialog(functionFrame, "Please select a file to view data", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
