@@ -44,10 +44,6 @@ public class MoveController implements ActionListener {
                 } catch (IOException ex) {
                     System.out.println("Error moving file: " + ex.getMessage());
                 }
-            } else {
-                AudioHandler.playAudio("/errorV2.wav");
-                System.out.println("Source file or destination path is null");
-                JOptionPane.showMessageDialog(moveFrame, "Please select a file and destination folder to move", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }else{
             AudioHandler.playAudio("/errorV2.wav");

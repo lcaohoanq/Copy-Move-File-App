@@ -22,12 +22,12 @@ public class FunctionController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!functionFrame.checkState()) {
-            ProgressBarFrame progressBarFrame = new ProgressBarFrame();
-            progressBarFrame.setVisible(true);
-            progressBarFrame.triggerAction();
-        }else{
-            JOptionPane.showMessageDialog(functionFrame, "Please select a file to process", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+//        if (!functionFrame.checkState()) {
+//            ProgressBarFrame progressBarFrame = new ProgressBarFrame();
+//            progressBarFrame.setVisible(true);
+//            progressBarFrame.triggerAction();
+//        }else{
+//            JOptionPane.showMessageDialog(functionFrame, "Please select a file to process", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
     }
 }

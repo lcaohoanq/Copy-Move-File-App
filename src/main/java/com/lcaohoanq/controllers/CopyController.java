@@ -44,14 +44,10 @@ public class CopyController implements ActionListener {
                 } catch (IOException ex) {
                     System.out.println("Error copying file: " + ex.getMessage());
                 }
-            } else {
-                AudioHandler.playAudio("/errorV2.wav");
-                System.out.println("Source file or destination path is null");
-                JOptionPane.showMessageDialog(copyFrame, "Please select a file and destination folder to copy", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }else{
             AudioHandler.playAudio("/errorV2.wav");
-            JOptionPane.showMessageDialog(copyFrame, "Please select a file to process", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(copyFrame, "Please select a file and destination folder to copy", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
