@@ -22,7 +22,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
-public abstract class FunctionFrame extends JFrame {
+public class FunctionFrame extends JFrame {
 
     private JFileChooser sourceFileChooser;
     private JFileChooser destinationFileChooser;
